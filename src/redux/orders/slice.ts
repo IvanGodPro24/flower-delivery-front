@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { State } from "../flowers/flowers.types";
+import { OrderState } from "./orders.types";
 import { getAllOrders } from "./operations";
 import { handlePending, handleRejected } from "../flowers/slice";
 
-const initialState: State = {
+const initialState: OrderState = {
   items: [],
   loading: false,
   error: null,

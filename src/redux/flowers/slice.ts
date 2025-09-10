@@ -1,17 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { State } from "./flowers.types";
+import { FlowersState } from "./flowers.types";
 import { getAllFlowers } from "./operations";
+import { ShopState } from "../shops/shops.types";
+import { OrderState } from "../orders/orders.types";
 
-export const handlePending = (state: State) => {
+export const handlePending = (state: FlowersState | ShopState | OrderState) => {
   state.loading = true;
 };
 
-export const handleRejected = (state: State, action: PayloadAction<any>) => {
+export const handleRejected = (
+  state: FlowersState | ShopState | OrderState,
+  action: PayloadAction<any>
+) => {
   state.loading = false;
   state.error = action.payload;
 };
 
-const initialState: State = {
+const initialState: FlowersState = {
   items: [],
   loading: false,
   error: null,

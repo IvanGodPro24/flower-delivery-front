@@ -1,6 +1,3 @@
-import { Order } from "../orders/orders.types";
-import { Shop } from "../shops/shops.types";
-
 export type Flower = {
   _id: string;
   name: string;
@@ -11,8 +8,8 @@ export type Flower = {
   };
 };
 
-export type State = {
-  items: Flower[] | Shop[] | Order[];
+export type FlowersState = {
+  items: Flower[];
   loading: boolean;
   error: string | null;
 };

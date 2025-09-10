@@ -15,3 +15,9 @@ export type Products = {
   };
   quantity: number;
 };
+
+export type OrderState = {
+  items: Order[];
+  loading: boolean;
+  error: string | null;
+};

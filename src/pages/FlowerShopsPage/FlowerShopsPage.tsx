@@ -1,11 +1,11 @@
-import Flowers from "../../components/FlowersList/FlowersList";
+import FlowersList from "../../components/FlowersList/FlowersList";
 import ShopsList from "../../components/ShopsList/ShopsList";
 
 const FlowerShopsPage = () => {
   return (
     <div>
       <ShopsList />
-      <Flowers />
+      <FlowersList />
     </div>
   );
 };

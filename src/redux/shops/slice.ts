@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { State } from "../flowers/flowers.types";
+import { ShopState } from "./shops.types";
 import { getAllShops } from "./operations";
 import { handlePending, handleRejected } from "../flowers/slice";
 
-const initialState: State = {
+const initialState: ShopState = {
   items: [],
   loading: false,
   error: null,

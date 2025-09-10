@@ -16,13 +16,16 @@ const ShopsList = () => {
   const shops = useAppSelector(selectShops);
 
   return (
-    <ul className={css.list}>
-      {shops.map((shop) => (
-        <li className={css.item} key={shop._id}>
-          <ShopsItem {...shop} />
-        </li>
-      ))}
-    </ul>
+    <div className={css.container}>
+      <h2 className={css.title}>Our Flower Shops</h2>
+      <ul className={css.list}>
+        {shops.map((shop) => (
+          <li className={css.item} key={shop._id}>
+            <ShopsItem {...shop} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
