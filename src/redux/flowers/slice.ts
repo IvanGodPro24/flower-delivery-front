@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FlowersState } from "./flowers.types";
+import { State } from "./flowers.types";
 import { getAllFlowers } from "./operations";
 
-const handlePending = (state: FlowersState) => {
+export const handlePending = (state: State) => {
   state.loading = true;
 };
 
-const handleRejected = (state: FlowersState, action: PayloadAction<any>) => {
+export const handleRejected = (state: State, action: PayloadAction<any>) => {
   state.loading = false;
   state.error = action.payload;
 };
 
-const initialState: FlowersState = {
+const initialState: State = {
   items: [],
   loading: false,
   error: null,

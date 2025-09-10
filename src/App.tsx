@@ -21,7 +21,7 @@ function App() {
       <Layout>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/shops" element={<FlowerShopsPage />} />
+            <Route path="/" element={<FlowerShopsPage />} />
             <Route path="/shopping-cart" element={<ShoppingCartPage />} />
 
             <Route path="*" element={<NotFoundPage />} />

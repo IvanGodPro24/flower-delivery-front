@@ -6,9 +6,9 @@ axios.defaults.baseURL = "http://localhost:3000";
 
 export const getAllFlowers = createAsyncThunk<
   Flower[],
-  null,
+  void,
   { rejectValue: string }
->("flower/getAll", async (_, { rejectWithValue }) => {
+>("flowers/getAll", async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get("/flowers");
 
