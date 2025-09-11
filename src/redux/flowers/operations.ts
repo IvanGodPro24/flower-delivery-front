@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Flower } from "./flowers.types";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://flower-delivery-back.onrender.com";
 
 export const getAllFlowers = createAsyncThunk<
   Flower[],
