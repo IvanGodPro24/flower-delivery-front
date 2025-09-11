@@ -88,6 +88,24 @@ const Header = () => {
               />
             </NavLink>
           </motion.li>
+
+          <motion.div className={css.verticalLine} variants={itemVariants} />
+
+          <motion.li variants={itemVariants}>
+            <NavLink
+              to="/history"
+              className={({ isActive }) =>
+                isActive ? `${css.link} ${css.active}` : css.link
+              }
+            >
+              <span className={css.linkText}>History</span>
+              <motion.div
+                className={css.linkHoverEffect}
+                whileHover={{ width: "80%" }}
+                transition={{ duration: 0.3 }}
+              />
+            </NavLink>
+          </motion.li>
         </motion.ul>
       </nav>
 

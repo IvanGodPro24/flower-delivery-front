@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  gap: 40px;
+  padding: 30px;
+}
+
+.cartContainer {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 15px 35px rgba(106, 90, 205, 0.1);
+  border: 1px solid rgba(106, 90, 205, 0.1);
+}
+
+.formContainer {
+  width: 600px;
+}
+
+.pageTitle {
+  color: #6a5acd;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.pageTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff69b4, #9370db);
+  border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .formContainer {
+    width: 100%;
+  }
+
+  .cartContainer {
+    order: 2;
+  }
+
+  .formContainer {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    gap: 25px;
+  }
+
+  .cartContainer {
+    padding: 20px;
+  }
+
+  .pageTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}
