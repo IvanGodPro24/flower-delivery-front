@@ -3,8 +3,9 @@ import css from "./ShoppingCartList.module.css";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getCart } from "../../redux/orders/operations";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectOrders } from "../../redux/orders/selectors";
+import { selectLoading, selectOrders } from "../../redux/orders/selectors";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
+import ExtraLoader from "../ExtraLoader/ExtraLoader";
 
 const ShoppingCartList = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,10 @@ const ShoppingCartList = () => {
   }, [dispatch]);
 
   const orders = useAppSelector(selectOrders);
+
+  const loading = useAppSelector(selectLoading);
+
+  if (loading) return <ExtraLoader />;
 
   return (
     <div className={css.container}>

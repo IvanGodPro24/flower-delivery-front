@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getAllFlowers } from "../../redux/flowers/operations";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectFlowers } from "../../redux/flowers/selectors";
+import { selectFlowers, selectLoading } from "../../redux/flowers/selectors";
 import css from "./FlowersList.module.css";
 import FlowersItem from "../FlowersItem/FlowersItem";
+import Loader from "../Loader/Loader";
 
 const FlowersList = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,10 @@ const FlowersList = () => {
   }, [dispatch]);
 
   const flowers = useAppSelector(selectFlowers);
+
+  const loading = useAppSelector(selectLoading);
+
+  if (loading) return <Loader />;
 
   return (
     <div className={css.container}>

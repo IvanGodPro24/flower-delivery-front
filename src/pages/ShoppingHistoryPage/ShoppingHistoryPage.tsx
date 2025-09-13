@@ -3,8 +3,9 @@ import css from "./ShoppingHistoryPage.module.css";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { getHistory } from "../../redux/orders/operations";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectOrders } from "../../redux/orders/selectors";
+import { selectLoading, selectOrders } from "../../redux/orders/selectors";
 import OrderHistoryItem from "../../components/OrderHistoryItem/OrderHistoryItem";
+import Loader from "../../components/Loader/Loader";
 
 const ShoppingHistoryPage = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,10 @@ const ShoppingHistoryPage = () => {
   }, [dispatch]);
 
   const orders = useAppSelector(selectOrders);
+
+  const loading = useAppSelector(selectLoading);
+
+  if (loading) return <Loader />;
 
   return (
     <div className={css.container}>
