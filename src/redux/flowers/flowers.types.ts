@@ -11,5 +11,5 @@ export type Flower = {
 export type FlowersState = {
   items: Flower[];
   loading: boolean;
-  error: string | null;
+  error?: string | null;
 };

@@ -1,20 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { FlowersState } from "./flowers.types";
 import { getAllFlowers } from "./operations";
-import { ShopState } from "../shops/shops.types";
-import { OrderState } from "../orders/orders.types";
-
-export const handlePending = (state: FlowersState | ShopState | OrderState) => {
-  state.loading = true;
-};
-
-export const handleRejected = (
-  state: FlowersState | ShopState | OrderState,
-  action: PayloadAction<any>
-) => {
-  state.loading = false;
-  state.error = action.payload;
-};
 
 const initialState: FlowersState = {
   items: [],
@@ -31,19 +17,21 @@ const slice = createSlice({
 
   extraReducers: (builder) =>
     builder
+      .addCase(getAllFlowers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
       .addCase(getAllFlowers.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.items = action.payload;
       })
 
-      .addMatcher((action: PayloadAction<string>) => {
-        return action.type.endsWith("rejected");
-      }, handleRejected)
-
-      .addMatcher((action: PayloadAction<string>) => {
-        return action.type.endsWith("pending");
-      }, handlePending),
+      .addCase(getAllFlowers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      }),
 });
 
 export default slice.reducer;

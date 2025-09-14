@@ -11,7 +11,15 @@ import {
   getOrderById,
   updateOrderItem,
 } from "./operations";
-import { handlePending, handleRejected } from "../flowers/slice";
+
+const handlePending = (state: OrderState) => {
+  state.loading = true;
+};
+
+const handleRejected = (state: OrderState, action: PayloadAction<any>) => {
+  state.loading = false;
+  state.error = action.payload;
+};
 
 const initialState: OrderState = {
   items: [],
@@ -61,16 +69,22 @@ const slice = createSlice({
       })
 
       .addCase(addToCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         state.items.push(action.payload);
       })
 
       .addCase(deleteOrder.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         state.items = state.items.filter(
           (item) => item._id !== action.payload._id
         );
       })
 
       .addCase(deleteOrderItem.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         if ("message" in action.payload) {
           state.items = state.items.filter(
             (item) => item._id !== action.meta.arg.orderId
@@ -83,6 +97,8 @@ const slice = createSlice({
       })
 
       .addCase(updateOrderItem.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
         state.items = state.items.map((item) =>
           item._id === action.payload._id ? action.payload : item
         );

@@ -6,5 +6,5 @@ export type Shop = {
 export type ShopState = {
   items: Shop[];
   loading: boolean;
-  error: string | null;
+  error?: string | null;
 };
