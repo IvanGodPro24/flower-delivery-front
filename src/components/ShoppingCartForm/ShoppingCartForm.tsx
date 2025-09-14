@@ -15,7 +15,9 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  phone: Yup.string().required("Phone is required"),
+  phone: Yup.string()
+    .matches(/^0\d{9}$/, "Phone number must be 10 digits and start with 0")
+    .required("Phone is required"),
   address: Yup.string().required("Address is required"),
 });
 
