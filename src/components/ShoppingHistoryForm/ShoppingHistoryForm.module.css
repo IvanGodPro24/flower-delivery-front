@@ -1,34 +1,55 @@
 .container {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 30px;
   box-shadow: 0 15px 35px rgba(106, 90, 205, 0.15);
   border: 1px solid rgba(106, 90, 205, 0.1);
-  max-width: 600px;
-  margin: 0 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .title {
   color: #6a5acd;
   font-size: 1.8rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 10px;
   position: relative;
-  padding-bottom: 15px;
+  display: inline-block;
 }
 
 .title::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 70px;
   height: 3px;
   background: linear-gradient(90deg, #ff69b4, #9370db);
   border-radius: 2px;
+}
+
+.flowerDecoration {
+  font-size: 1.8rem;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+.description {
+  color: #9370db;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
 }
 
 .form {
@@ -47,7 +68,13 @@
   color: #6a5acd;
   font-weight: 600;
   font-size: 0.95rem;
-  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labelIcon {
+  font-size: 1rem;
 }
 
 .input {
@@ -58,6 +85,7 @@
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.8);
   color: #6a5acd;
+  font-family: inherit;
 }
 
 .input:focus {
@@ -89,14 +117,20 @@
   box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
 }
 
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: linear-gradient(135deg, #6a5acd, #9370db);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(106, 90, 205, 0.4);
 }
 
-.btn:active {
+.btn:active:not(:disabled) {
   transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btnIcon {
@@ -131,15 +165,102 @@
   z-index: -1;
 }
 
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(106, 90, 205, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.radioLabel:hover {
+  border-color: rgba(106, 90, 205, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 90, 205, 0.1);
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radioCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(106, 90, 205, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.radioCustom::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9370db, #6a5acd);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.radioInput:checked + .radioCustom {
+  border-color: #9370db;
+  background: rgba(147, 112, 219, 0.1);
+}
+
+.radioInput:checked + .radioCustom::after {
+  opacity: 1;
+}
+
+.radioText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6a5acd;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.radioIcon {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.radioInput:focus + .radioCustom {
+  box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.3);
+  border-color: #9370db;
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 20px;
+    padding: 25px 20px;
     margin: 0 15px;
   }
 
   .title {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
 
   .input {

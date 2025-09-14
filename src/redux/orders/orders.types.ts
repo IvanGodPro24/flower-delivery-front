@@ -45,3 +45,9 @@ export type FinalizeOrder = {
   phone: string;
   address: string;
 };
+
+export type GetHistory = {
+  email?: string;
+  phone?: string;
+  orderId?: string;
+};

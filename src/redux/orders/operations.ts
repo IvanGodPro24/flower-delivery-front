@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
   FinalizeOrder,
+  GetHistory,
   Order,
   OrderItem,
   UpdateOrderItem,
@@ -36,11 +37,11 @@ export const getCart = createAsyncThunk<Order[], void, { rejectValue: string }>(
 
 export const getHistory = createAsyncThunk<
   Order[],
-  void,
+  GetHistory,
   { rejectValue: string }
->("orders/getHistory", async (_, { rejectWithValue }) => {
+>("orders/getHistory", async (payload, { rejectWithValue }) => {
   try {
-    const response = await axios.get("/orders/history");
+    const response = await axios.post("/orders/history", payload);
 
     return response.data;
   } catch (error: any) {
