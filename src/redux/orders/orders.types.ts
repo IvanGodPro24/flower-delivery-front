@@ -22,7 +22,9 @@ export type Products = {
 };
 
 export type OrderState = {
-  items: Order[];
+  cart: Order[];
+  history: Order[];
+  all: Order[];
   loading: boolean;
   error: string | null;
 };

@@ -1,11 +1,11 @@
 import css from "./ShoppingHistoryPage.module.css";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectOrders } from "../../redux/orders/selectors";
+import { selectHistory } from "../../redux/orders/selectors";
 import OrderHistoryItem from "../../components/OrderHistoryItem/OrderHistoryItem";
 import ShoppingHistoryForm from "../../components/ShoppingHistoryForm/ShoppingHistoryForm";
 
 const ShoppingHistoryPage = () => {
-  const orders = useAppSelector(selectOrders);
+  const orders = useAppSelector(selectHistory);
 
   return (
     <div className={css.container}>

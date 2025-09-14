@@ -4,7 +4,7 @@ import css from "./ShoppingCartForm.module.css";
 import { ShoppingCartFormProps } from "./ShoppingCartForm.types";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { selectOrders } from "../../redux/orders/selectors";
+import { selectCart } from "../../redux/orders/selectors";
 import { toast } from "sonner";
 import { finalizeOrder } from "../../redux/orders/operations";
 import ExtraLoader from "../ExtraLoader/ExtraLoader";
@@ -30,7 +30,7 @@ const initialValues: ShoppingCartFormProps = {
 
 const ShoppingCartForm = () => {
   const dispatch = useAppDispatch();
-  const orders = useAppSelector(selectOrders);
+  const orders = useAppSelector(selectCart);
   const navigate = useNavigate();
 
   const currentOrder = orders.find((o) => !o.isFinalized);

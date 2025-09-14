@@ -22,7 +22,9 @@ const handleRejected = (state: OrderState, action: PayloadAction<any>) => {
 };
 
 const initialState: OrderState = {
-  items: [],
+  cart: [],
+  history: [],
+  all: [],
   loading: false,
   error: null,
 };
@@ -39,30 +41,30 @@ const slice = createSlice({
       .addCase(getAllOrders.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.all = action.payload;
       })
 
       .addCase(getCart.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.cart = action.payload;
       })
 
       .addCase(getHistory.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.history = action.payload;
       })
 
       .addCase(getOrderById.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const exists = state.items.find((o) => o._id === action.payload._id);
+        const exists = state.cart.find((o) => o._id === action.payload._id);
 
         if (!exists) {
-          state.items.push(action.payload);
+          state.cart.push(action.payload);
         } else {
-          state.items = state.items.map((item) =>
+          state.cart = state.cart.map((item) =>
             item._id === action.payload._id ? action.payload : item
           );
         }
@@ -71,13 +73,13 @@ const slice = createSlice({
       .addCase(addToCart.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.cart.push(action.payload);
       })
 
       .addCase(deleteOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.filter(
+        state.cart = state.cart.filter(
           (item) => item._id !== action.payload._id
         );
       })
@@ -86,11 +88,11 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         if ("message" in action.payload) {
-          state.items = state.items.filter(
+          state.cart = state.cart.filter(
             (item) => item._id !== action.meta.arg.orderId
           );
         } else {
-          state.items = state.items.map((item) =>
+          state.cart = state.cart.map((item) =>
             item._id === action.payload._id ? action.payload : item
           );
         }
@@ -99,7 +101,7 @@ const slice = createSlice({
       .addCase(updateOrderItem.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.map((item) =>
+        state.cart = state.cart.map((item) =>
           item._id === action.payload._id ? action.payload : item
         );
       })
@@ -107,7 +109,7 @@ const slice = createSlice({
       .addCase(finalizeOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.map((item) =>
+        state.cart = state.cart.map((item) =>
           item._id === action.payload._id ? action.payload : item
         );
       })

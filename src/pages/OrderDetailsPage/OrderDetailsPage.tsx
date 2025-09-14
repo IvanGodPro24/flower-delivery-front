@@ -4,15 +4,16 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { getOrderById } from "../../redux/orders/operations";
-import { selectOrders } from "../../redux/orders/selectors";
+import { selectCart } from "../../redux/orders/selectors";
 import css from "./OrderDetailsPage.module.css";
 
 const OrderDetailsPage = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const dispatch = useAppDispatch();
-  const orders = useAppSelector(selectOrders);
+  const orders = useAppSelector(selectCart);
 
   const order = orders.find((o) => o._id === orderId);
+
   useEffect(() => {
     if (!order && orderId) {
       dispatch(getOrderById(orderId));
